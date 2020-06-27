@@ -1,0 +1,21 @@
+1.调参：
+GridSearch没有探究，调整参数，提高手动效率
+GS参数过多时，运行时间特别长，可以用RandomSearch。
+
+2.DataSet：
+补充修改Readme，记录数据处理过程、Features中英文对照表。
+
+3.数据处理：
+3.1 归一化处理：正态分布。。。
+3.2 Feature选取过程：PCA、Randomly、LCA、other methold:from papers、Feature importance*
+问题1：training data做完处理后，testing data也要做同样的处理，可将sklearn里面的处理过程保留下来。
+
+4.Model收敛趋势——画图、判断数据是否充足。
+
+5.Overhead 采用不同的数据Overhead有多大：训练、评估所用的时间。测试5+ times取平均值
+
+6.好好研究AUC（sklearn里有模型）、Confusion Matrix数据平衡性。画个图展示数据特征，如0\1分布是否合理。训练模型对于平衡非平衡有不同的模型及参数
+
+7.MultiClass分析：数据特征、模型、特征
+
+

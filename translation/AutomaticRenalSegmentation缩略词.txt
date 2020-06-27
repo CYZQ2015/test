@@ -1,0 +1,12 @@
+MR Urography	核磁共振尿路成像
+MRI			MR  imaging 核磁共振尿路影像
+CKD			Chronic kidney disease (CKD
+GrabCut		graph cuts (GrabCut) 
+GFR			glomerular filtration rate (GFR)肾小球滤过率
+DCE-MRI		dynamic contrast-enhanced MRI(DCE-MRI)动态对比增强MRI
+VDRad 		可变密度采样和放射状视图排序(variable density sampling and radial view-ordering)
+PCA		Principle component analysis。中文名字：主成分分析
+
+
+
+

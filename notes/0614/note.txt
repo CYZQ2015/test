@@ -1,0 +1,7 @@
+1.将“脾肾差、肝肾差、右肾盂差、左肾盂差”换算成“脾肾比、肝肾比、右肾盂比、左肾盂比”，因为比值更具有差异性。
+2.机器学习基本概念及常见算法
+王涛:https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation
+王涛:https://scikit-learn.org/stable/modules/grid_search.html
+王涛:https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html
+3.发文要求：好一点的期刊，40篇应用论文，3000-4000字。
+4.王涛：每看完一篇论文，尝试用一句话总结它的贡献及不足，为后续论文撰写背景提供素材，不需要重新查看。

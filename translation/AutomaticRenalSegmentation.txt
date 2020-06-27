@@ -1,0 +1,73 @@
+Automatic Renal Segmentation for MR Urography Using 3D-GrabCut and Random Forests
+使用3D-GrabCut和随机森林对MR尿路造影进行自动肾脏分割
+
+Purpose: To introduce and evaluate a fully automated renal segmentation technique for glomerular filtration rate (GFR) assessment in children.
+Methods: An image segmentation method based on iterative graph cuts (GrabCut) was modified to work on time-resolved 3D dynamic contrast-enhanced MRI data sets. A random forest classifier was trained to further segment the renal tissue into cortex, medulla, and the collecting system. The algorithm was tested on 26 subjects and the segmentation results were compared to the manually drawn segmentation maps using the F1-score metric. A two-compartment model was used to estimate the GFR of each subject using both automatically and manually generated segmentation maps.
+Results: Segmentation maps generated automatically showed high similarity to the manually drawn maps for the wholekidney (F1=0.93) and renal cortex (F1=0.86). GFR estimations using whole-kidney segmentation maps from the automatic method were highly correlated (Spearman’s row=0.99) to the GFR values obtained from manual maps. The mean GFR estimation error of the automatic method was 2.98 6 0.66% with an average segmentation time of 45 s per patient.
+Conclusion: The automatic segmentation method performs as well as the manual segmentation for GFR estimation and reduces the segmentation time from several hours to 45 s.Magn Reson Med 79:1696–1707, 2018. VC 2017 International Society for Magnetic Resonance in Medicine.
+Key words: renal segmentation; machine learning; glomerular filtration rate; dynamic contrast enhanced MRI 
+目的：引入并评估用于儿童肾小球滤过率（GFR）评估的全自动肾脏分割技术。
+方法：修改了基于迭代图切割的图像分割方法（GrabCut），以处理时间分辨的3D动态对比度增强MRI数据集。训练了一个随机森林分类器，将肾脏组织进一步分为皮质，髓质和收集系统。该算法在26个对象上进行了测试，并将分割结果与使用F1评分指标的手动绘制的分割图进行了比较。使用两室模型，使用自动和手动生成的分割图来估计每个受试者的GFR。
+结果：自动生成的分割图与全肾（F1 = 0.93）和肾皮质（F1 = 0.86）的手动绘制图显示出高度相似性。使用自动方法的全肾分割图进行的GFR估算值与从手动图获得的GFR值高度相关（Spearman's row = 0.99）。自动方法的平均GFR估计误差为2.98+/-0.66%，每位患者的平均分割时间为45s。
+结论：对于GFR估计，自动分割方法的性能与手动分割相同，并且将分割时间从数小时减少到45s。MagnReson Med 79：1696-1707，2018. VC 2017国际磁共振医学会。
+关键词：肾分割机器学习肾小球滤过率;动态对比增强MRI
+
+The pharmacokinetic models used for GFR estimation require signal intensity time curves of the kidneys, which can be obtained from the DCE-MRI data using renal segmentation maps. Manual segmentation of the kidneys can take several hours (23) and often requires trained personnel increasing the overall cost of quantitative analysis. Usually, image segmentation is performed on static images using image-processing techniques. In DCE-MRI, the volumetric images have a temporal dimension that can be leveraged in segmentation. Several techniques have been developed to automate the renal segmentation process using information from spatialonly (23–26) and temporal-only (27–31) domains. Several techniques have used both spatial and temporal domains (32–34) to perform renal segmentation. Some of these techniques (32,34) have been demonstrated on a small number of data sets successfully, however, their performance on a larger population is unknown. Only one study (23), with 22 clinical data sets, has reported the automatic segmentation performance in terms of GFR estimates. However, it is limited to the spatial information only and requires manual intervention to select seed regions for segmentation.  In this study, we present an automatic renal segmentation method based on computer vision and machine learning. This novel approach uses both spatial and temporal domains to achieve full kidney and renal cortex segmentation. We demonstrate the method in a clinical application by obtaining renal segmentation maps and estimating the single-kidney GFR using a two-compartment model (10). The results are compared to the GFR estimates obtained from manually drawn segmentation maps.
+用于GFR估算的药代动力学模型需要肾脏的信号强度时间曲线，这可以使用肾脏分割图从DCE-MRI数据中获得。手动分割肾脏可能需要几个小时（23），并且经常需要训练有素的人员来增加定量分析的总体成本。通常，使用图像处理技术在静态图像上执行图像分割。在DCE-MRI中，体积图像具有可在分割中利用的时间维度。已经开发了几种技术，可以使用仅空间（23-26）和仅时间（27-31）域的信息来自动进行肾脏分割过程。几种技术同时使用了时域和时域（32–34）进行肾脏分割。其中一些技术（32,34）已在少量数据集上得到了成功证明，但是，它们在较大人群中的性能尚不清楚。只有一项研究（23），具有22个临床数据集，报告了根据GFR估计值进行的自动分割性能。但是，它仅限于空间信息，需要手动干预才能选择要分割的种子区域。在这项研究中，我们提出了一种基于计算机视觉和机器学习的自动肾脏分割方法。这种新颖的方法使用时域和时域来实现完整的肾脏和肾脏皮质分割。我们通过获得肾脏分割图并使用两室模型估算单肾GFR来证明该方法在临床中的应用（10）。将结果与从手动绘制的分割图获得的GFR估计值进行比较。
+
+Fig.1. Automatic segmentation overview. First, kidneys are located in the abdominal images using computer vision techniques. Second, each kidney voxel is classified as cortex, medulla, or collecting system using machine-learning methods.
+图1. 自动细分概述。 
+首先，使用计算机视觉技术将肾脏定位在腹部图像中。 
+其次，使用机器学习方法将每个肾脏体素分类为皮质，髓质或收集系统。
+
+Fig 2. Signal-time curves of the renal tissues and the neighboring organs. Medulla signal keeps increasing in the 60-s to 90-s interval as a result of the accumulation of contrast agent in the renal tubules.
+图2 肾组织和邻近器官的信号时间曲线。 
+由于造影剂在肾小管中积聚，髓质信号在60秒至90秒的间隔内持续增加.
+
+In DCE-MRI, different tissues often show different enhancement characteristics (Fig. 2). Tissues that enhance because of the perfusion of contrast-rich blood (e.g., liver, spleen, and renal cortex) show an increase in the signal intensity within the first 30 s of the bolus arrival followed by a steady decrease in the following temporal phases. Renal medulla, on the other hand, has a steady increase in signal intensity between 30 s and 120 s because of the accumulation of contrast agent in the renal tubules. In addition to this accumulation as a result of continuous filtration of the blood, the renal medulla contains the loop of Henle where the contrast agent concentration is increased as a result of reabsorption of water. These features give the renal medulla a unique intensity time curve distinguishing it from other tissues (Fig. 2). A similar argument can be made for the collecting system; however, it enhances at a much later stage.
+在DCE-MRI中，不同的组织通常表现出不同的增强特征（图2）。 由于富含对比剂的血液（例如肝，脾和肾皮质）的灌注而增强的组织显示，在大丸剂到达的前30 s内信号强度增加，随后在随后的时间阶段稳步下降。 另一方面，由于造影剂在肾小管中积聚，肾髓质的信号强度在30 s和120 s之间稳定增加。 除了由于连续过滤血液而产生的这种积聚之外，肾髓质还包含Henle回路，在该回路中，由于水的重吸收，造影剂浓度增加了。 这些特征为肾髓质提供了一条独特的强度时间曲线，将其与其他组织区分开（图2）。 收集系统可以有类似的论点。 但是，在以后的阶段它会增强。
+
+FIG. 3. Detection of renal bounding boxes. (a) Distribution of medulla scores in the abdominal image. The scores are whitened by removing the mean and normalizing the standard deviation. The values are the number of standard deviations from the mean score. (b) Scores above the Otsu threshold (36) overlaid on the anatomical image. Clusters within a maximum cortical thickness distance from each other grouped together under the same color. (c) Medulla groups are dilated by the maximum cortical thickness to cover the renal parenchyma. (d) Three-dimensional convex hulls of the dilated medulla groups are calculated to create renal bounding boxes.
+图 3.检测肾脏边界框。 
+（a）腹部图像中延髓分数的分布。 通过删除平均值并将标准偏差归一化，可以使分数变白。 值是与平均得分的标准偏差数。 
+（b）得分高于重叠在解剖图像上的Otsu阈值（36）。 在彼此最大皮质厚度距离内的簇以相同颜色分组在一起。 
+（c）髓质组被最大皮质厚度扩张以覆盖肾实质。 
+（d）计算膨胀的延髓组的三维凸包，以创建肾脏边界框。
+A bounding box was calculated for each kidney using the following steps. First, the medulla score maps (Fig.3a) were thresholded using Otsu’s method (36) to reveal the medulla clusters (Fig. 3b). Then, the clusters within one cortical thickness (dctx) distance in all directions
+were grouped together (Fig. 3c). Finally, a binary dilation operation was performed to expand the medulla clusters by one cortical thickness (dctx) in all directions (Fig. 3d) and the 3D convex hull was calculated (Fig. 3e) to obtain a bounding box around each kidney (Fig. 3f).
+使用以下步骤为每个肾脏计算一个边界框。 首先，使用Otsu方法（36）对髓质评分图（图3a）进行阈值处理以揭示髓质簇（图3b）。 然后，在所有方向上在一个皮质厚度（dctx）距离内的簇
+被分组在一起（图3c）。 最后，进行二元扩张操作，将髓质簇沿所有方向扩展一个皮质厚度（dctx）（图3d），并计算3D凸包（图3e），以获得围绕每个肾脏的边界框（图3d）。
+
+FIG. 4. Basis functions (eigenvectors) corresponding to the highest three eigenvalues are calculated from the subject’s signal-time curves. Each voxel’s signal-time curve can be represented as a linear combination of basis functions. The coefficients are assigned to RGB color channels to create the PCA map.
+图。 4.根据受试者的信号时间曲线计算出与最高三个特征值相对应的基函数（特征向量）。 每个体素的信号时间曲线都可以表示为基本函数的线性组合。 将系数分配给RGB颜色通道以创建PCA映射。
+
+We developed a modification of GrabCut (37) to apply it to DCE-MRI data. The developed algorithm was used to extract the renal tissue from the bounding box defined in the previous step. The GrabCut algorithm uses iterative graph cuts to extract the foreground object from an RGB image given a loosely drawn bounding box around the foreground object. In a typical graph cut segmentation (38), some regions of background and foreground object have to be labeled by an expert. In the recent GrabCut algorithm (37), anything outside the bounding box is considered “background” and the region inside is considered “unknown.” The “unknown” region is labeled as “possible foreground” and “possible background” through iterative graph cuts in which the pixel-to-pixel smoothness term is based on the Euclidian distance in the color space. To apply this method to the DCE-MRI data, we have modified the GrabCut implementation available in OpenCV to apply the smoothness term in a 3D neighborhood. This modification allowed the use of 3D images with three channels (RGB). The temporal dimension of DCE-MRI data sets often has more than three temporal phases. The temporal phases of the data set were reduced to three channels using principal component analysis (PCA) and mapped to RGB channels (Fig. 4). 
+
+我们开发了对GrabCut（37）的修改，以将其应用于DCE-MRI数据。所开发的算法用于从上一步中定义的边界框中提取肾脏组织。 GrabCut算法使用迭代图割来从RGB图像中提取前景对象，给定围绕前景对象的松散绘制的边界框。在典型的图割分割中（38），背景和前景对象的某些区域必须由专家标记。在最新的GrabCut算法（37）中，边界框之外的任何内容都被视为“背景”，而内部区域则被视为“未知”。 “未知”区域通过迭代图割标记为“可能前景”和“可能背景”，其中像素到像素的平滑度项基于颜色空间中的欧几里得距离。为了将此方法应用于DCE-MRI数据，我们修改了OpenCV中可用的GrabCut实现，以在3D邻域中应用平滑度项。此修改允许使用具有三个通道（RGB）的3D图像。 DCE-MRI数据集的时间维度通常具有三个以上的时间阶段。使用主成分分析（PCA）将数据集的时间阶段简化为三个通道，并映射到RGB通道（图4）。
+
+
+FIG. 5. Flowchart of the automated segmentation process. (a) Input to the algorithm is the time resolved 3D DCE-MRI data set. (b) Renal bounding box calculated using the steps described in Figure 3. (c) PCA is applied to the DCE-MRI data set along the time axis to reduce it to three channels represented as RGB. The resulting image has no temporal phases, however, it still has temporal information (i.e., different colors map to different signal-time curves). (d) Output of the renal parenchyma segmentation using GrabCut. (e) Output of the voxel level SVM classifier for segmentation of renal cortex (blue), medulla (yellow), and the collecting system (red). 
+图。 5.自动细分过程的流程图。 （a）该算法的输入是时间分辨的3D DCE-MRI数据集。 （b）使用图3中描述的步骤计算出的肾脏边界框。（c）将PCA沿时间轴应用于DCE-MRI数据集，以将其缩小为表示为RGB的三个通道。 所得图像没有时间相位，但是，它仍然具有时间信息（即，不同的颜色映射到不同的信号时间曲线）。 （d）使用GrabCut进行肾实质分割的输出。 （e）体素级SVM分类器的输出，用于分割肾皮质（蓝色），髓质（黄色）和收集系统（红色）。
+
+The output of the PCA reduction was a 3D-RGB image (three spatial and one color dimension) in which different colors represent different signaltime curve principal components. The modified GrabCut algorithm was applied to the PCA reduced data sets using the renal bounding boxes to obtain the segmentation map of the renal parenchyma (Fig. 5). 
+PCA缩减的输出是3D-RGB图像（三个空间和一个颜色维度），其中不同的颜色表示不同的信号时间曲线主成分。使用肾脏边界框将改良的GrabCut算法应用于PCA简化的数据集，以获得肾脏实质的分割图（图5）。
+
+
+Result——————————————————————————————————————————------------------
+
+With Institutional Review Board approval and waived consent, we retrospectively identified three different groups of data sets with different protocols that were suitable for automatic renal segmentation. All clinical scans were performed on a 3T MR750 scanner (GE Healthcare, Waukesha, WI) using a 32-channel torso coil.
+在机构审查委员会的批准和豁免同意的情况下，我们回顾性地确定了三组具有不同方案的数据集，这些数据集适用于自动肾分割。 所有临床扫描均使用32通道躯干线圈在3T MR750扫描仪（GE Healthcare，Waukesha，WI）上进行。
+
+FIG. 6. Renal pre-contrast (a) and post-contrast (b, d, e) phases captured by 7-s temporal resolution VDRAD acquisition. (c) The arterial phase can be observed in the maximum intensity projection (MIP) image. Manually drawn segmentation map (f) is used as the ground truth labeling of the renal voxels. 
+图。 6.通过7 s时间分辨率VDRAD采集捕获的肾脏造影前（a）和造影后（b，d，e）阶段。 
+（c）可以在最大强度投影（MIP）图像中观察到动脉相位。 手动绘制的分割图（f）被用作肾脏体素的地面真相标签。
+
+An example of the DCE-MRI data set acquired using respiratory navigated VDRad at 7s temporal resolution is shown in Figure 6. The butterfly navigation incorporated into VDRad resulted in diagnostic quality images with no apparent respiration-induced artifacts. The temporal resolution of the acquisition was high enough to capture the cortical enhancement phase of the contrast update (Fig. 6b) as well as the arterial enhancement phase (Fig. 6c). Manually drawn segmentation maps of the kidneys are shown in Figure 6f. 图6显示了使用呼吸导航的VDRad以7s的时间分辨率获取的DCE-MRI数据集的示例。将蝴蝶导航并入VDRad可以得到诊断质量图像，没有明显的呼吸诱发的伪影。 采集的时间分辨率足够高，可以捕获对比更新的皮质增强阶段（图6b）以及动脉增强阶段（图6c）。 手动绘制的肾脏分割图如图6f所示。 
+
+
+In conclusion, we have developed a new technique to automatically segment kidneys from the DCE-MRI data using computer vision and machine learning. Specifically, we have developed a heuristic approach to locating kidneys using the medulla as a target (i.e., medulla score map), modified the GrabCut algorithm to work in 3D, applied the GrabCut algorithm to the time resolved MRI data using PCA dimensionality reduction, and trained a random forest classifier for renal cortex segmentation. We have used this new technique with a two-compartment model to estimate GFR in pediatric patients, and we have shown that the results are nearly identical to the GFR estimates obtained using a manual segmentation technique while reducing the segmentation time from several hours to 45 s per patient.
+总之，我们已经开发出一种新技术，可以使用计算机视觉和机器学习技术从DCE-MRI数据中自动分割肾脏。 具体来说，我们开发了一种启发式方法，以髓质为目标来定位肾脏（即髓质评分图），修改了GrabCut算法以在3D中工作，通过PCA降维将GrabCut算法应用于经过时间解析的MRI数据，以及 训练了随机森林分类器进行肾皮质分割。 我们将这种新技术与两室模型结合使用来估计儿科患者的GFR，结果表明，该结果与使用手动分割技术获得的GFR估计值几乎相同，同时将分割时间从数小时缩短至45 s 每个病人。
+
+
+
+
